@@ -23,14 +23,13 @@ RUN apt-get update && \
   ttf-wqy-zenhei \
   ttf-wqy-microhei \
   xfonts-wqy \
+  wget \
+  unzip && \
   mkdir -p ~/.cache/Cypress/4.0.2/Cypress && \
     wget --no-check-certificate -O /tmp/z.$$ http://download.cypress.io/desktop/5.6.0?platform=linux && \
     unzip -d ~/.cache/Cypress/4.0.2/ /tmp/z.$$ && \
     rm /tmp/z.$$ && \
     chmod +x ~/.cache/Cypress/4.0.2/Cypress/Cypress && \
-    #apt-get purge -y \
-    #    wget \
-    #    unzip && \
   # clean up
     rm -rf /var/lib/apt/lists/*
 
