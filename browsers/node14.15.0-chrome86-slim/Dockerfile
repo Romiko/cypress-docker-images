@@ -1,4 +1,4 @@
-FROM romiko/cypress-base:14.15.0-slim
+FROM cypress/base:14.15.0
 
 USER root
 
@@ -6,7 +6,7 @@ RUN node --version
 
 # Chrome dependencies
 RUN apt-get update
-RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils git
+RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils
 
 # install Chrome browser
 ENV CHROME_VERSION 86.0.4240.193
@@ -21,7 +21,18 @@ RUN google-chrome --version
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # Add zip utility - it comes in very handy
-#RUN apt-get update && apt-get install -y zip
+RUN apt-get update && apt-get install -y zip
+
+# add codecs needed for video playback in firefox
+# https://github.com/cypress-io/cypress-docker-images/issues/150
+RUN apt-get install mplayer -y
+
+# install Firefox browser
+ARG FIREFOX_VERSION=82.0.3
+RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
+  && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
+  && rm /tmp/firefox.tar.bz2 \
+  && ln -fs /opt/firefox/firefox /usr/bin/firefox
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
@@ -29,6 +40,7 @@ RUN echo  " node version:    $(node -v) \n" \
   "yarn version:    $(yarn -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
   "Chrome version:  $(google-chrome --version) \n" \
+  "Firefox version: $(firefox --version) \n" \
   "git version:     $(git --version) \n" \
   "whoami:          $(whoami) \n"
 
