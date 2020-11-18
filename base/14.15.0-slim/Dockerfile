@@ -26,18 +26,15 @@ RUN apt-get update && \
   wget \
   unzip && \
   mkdir -p ~/.cache/Cypress/4.0.2/Cypress && \
-    wget --no-check-certificate -O /tmp/z.$$ http://download.cypress.io/desktop/5.6.0?platform=linux && \
-    unzip -d ~/.cache/Cypress/4.0.2/ /tmp/z.$$ && \
-    rm /tmp/z.$$ && \
-    chmod +x ~/.cache/Cypress/4.0.2/Cypress/Cypress && \
+  wget --no-check-certificate -O /tmp/cypress.file http://download.cypress.io/desktop/5.6.0?platform=linux && \
   # clean up
     rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g npm@latest
 RUN npm --version
 
-RUN npm install -g yarn@latest --force
-RUN yarn --version
+#RUN npm install -g yarn@latest --force
+#RUN yarn --version
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications
@@ -53,6 +50,5 @@ RUN node -p process.versions
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
-  "yarn version:    $(yarn -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
   "user:            $(whoami) \n"
