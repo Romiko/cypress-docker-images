@@ -1,5 +1,5 @@
 
-FROM romiko/cypress-base-slim:14.15.0-slim
+FROM romiko/cypress-base-slim:14.15.0-slim2
 
 USER root
 
