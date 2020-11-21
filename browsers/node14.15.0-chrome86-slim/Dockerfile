@@ -7,7 +7,7 @@ RUN node --version
 
 # Chrome dependencies
 RUN apt-get update && \
-apt-get install --no-install-recommends -y \
+apt-get install -y \
 fonts-liberation \
 libappindicator3-1 \
 xdg-utils \
