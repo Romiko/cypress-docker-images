@@ -6,8 +6,14 @@ USER root
 RUN node --version
 
 # Chrome dependencies
-RUN apt-get update
-RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils git
+RUN apt-get update && \
+apt-get install --no-install-recommends -y \
+fonts-liberation \
+libappindicator3-1 \
+xdg-utils \
+git && \
+# clean up
+rm -rf /var/lib/apt/lists/*
 
 # download Chrome browser
 ENV CHROME_VERSION 86.0.4240.193

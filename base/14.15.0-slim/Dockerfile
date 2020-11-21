@@ -28,7 +28,7 @@ RUN apt-get update && \
   mkdir -p ~/.cache/Cypress/4.0.2/Cypress && \
   wget --no-check-certificate -O /tmp/cypress.file http://download.cypress.io/desktop/5.6.0?platform=linux && \
   # clean up
-    rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g npm@latest
 RUN npm --version
