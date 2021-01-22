@@ -26,7 +26,7 @@ RUN apt-get update && \
   wget \
   unzip && \
   mkdir -p ~/.cache/Cypress/4.0.2/Cypress && \
-  wget --no-check-certificate -O /tmp/cypress.file http://download.cypress.io/desktop/5.6.0?platform=linux && \
+  wget --no-check-certificate -O /tmp/cypress.file http://download.cypress.io/desktop/6.3.0?platform=linux && \
   # clean up
   rm -rf /var/lib/apt/lists/*
 
